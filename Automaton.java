@@ -54,11 +54,15 @@ public class Automaton
         int centre = state[0];
         for(int i = 0; i < state.length; i++) {
             int right = (i + 1 < state.length)? state[i + 1] : 0;
-            nextState[i] = (left + centre + right) % 2;
+            nextState[i] = calculateNextState(left, centre, right);
             left = centre;
             centre = right;
         }
         state = nextState;
+    }
+    
+    public int calculateNextState(int left, int centre, int right){
+        return (left + centre + right) % 2;
     }
     
     /**
